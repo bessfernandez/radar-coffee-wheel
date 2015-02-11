@@ -1,4 +1,7 @@
-# radial-coffee-wheel
-Radial coffee wheel prototype - using D3.js
+# Radial Coffee Wheel
+
+Radial coffee wheel - built using D3.js
+
+Work in progress..
 
 http://bessfernandez.github.io/radial-coffee-wheel/
