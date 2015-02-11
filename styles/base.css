@@ -1,0 +1,66 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+/* flexin */
+#taste-wrapper {
+  display: flex;
+}
+#chart {
+  margin-left: 20px;
+  flex: 1;
+}
+
+
+/* general */
+h1 {
+  flex: none;
+  clear: both;
+}
+
+h2 {
+  font-size: 14px;
+}
+
+
+/* SVG */
+
+#chart path {
+  fill: none;
+}
+
+/* Outer circle, tick-circles and spokes */
+#chart circle.outer {
+  stroke: #aaa;
+  stroke-dasharray: 4, 4;
+}
+#chart .tick-circles circle {
+  stroke: #ddd;
+  stroke-dasharray: 2, 2;
+}
+#chart .spokes line {
+  stroke: #666;
+  stroke-width: 0.2;
+}
+
+/* Axis */
+#chart .axis text {
+  font-size: 11px;
+}
+#chart .axis path {
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+#chart .axis line {
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+
+/* Labels */
+#chart .labels text {
+  fill: #333;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+
