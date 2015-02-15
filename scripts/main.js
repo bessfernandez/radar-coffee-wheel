@@ -74,7 +74,7 @@ var reflavor = function() {
     if (index === currKey) {
       data[0].data[currFlavor] = currValue * domainRange;
     }
-  }.bind(this));
+  });
 
   // update chart with new flavor
   d3.select('#chart')
