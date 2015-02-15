@@ -13,32 +13,36 @@
     <div id="taste-wrapper">
 
       <div id="flavors">
-        <h2>Floral</h2>
-        <input id="floral" type="range" value=".4" min="0" max="1" step="0.1" />
+        <form id="coffees">
 
-        <h2>Citrus</h2>
-        <input id="citrus" type="range" value=".8" min="0" max="1" step="0.1" />
+          <h2>Floral</h2>
+          <input id="floral" data-flavor="floral" data-color="#206E4F" type="range" value=".4" min="0" max="1" step="0.1" />
 
-        <h2>Berry</h2>
-        <input id="berry" type="range" value=".5" min="0" max="1" step="0.1" />
+          <h2>Citrus</h2>
+          <input id="citrus" type="range" data-flavor="citrus" data-color="#CCC02B" value=".8" min="0" max="1" step="0.1" />
 
-        <h2>Chocolate</h2>
-        <input id="chocolate" type="range" value=".1" min="0" max="1" step="0.1" />
+          <h2>Berry</h2>
+          <input id="berry" type="range" data-flavor="berry" data-color="#9F572B" value=".5" min="0" max="1" step="0.1" />
 
-        <h2>Sugar</h2>
-        <input id="sugar" type="range" value=".3" min="0" max="1" step="0.1" />
+          <h2>Chocolate</h2>
+          <input id="chocolate" type="range" data-flavor="chocolate" data-color="#7C7063" value=".1" min="0" max="1" step="0.1" />
 
-        <h2>Nut</h2>
-        <input id="nut" type="range" value=".3" min="0" max="1" step="0.1" />
+          <h2>Sugar</h2>
+          <input id="sugar" type="range" data-flavor="sugar" data-color="#D8D5C9" value=".3" min="0" max="1" step="0.1" />
 
-        <h2>Grain</h2>
-        <input id="grain" type="range" value=".5" min="0" max="1" step="0.1" />
+          <h2>Nut</h2>
+          <input id="nut" type="range" data-flavor="nut" data-color="#BA966B" value=".3" min="0" max="1" step="0.1" />
 
-        <h2>Herb</h2>
-        <input id="herb" type="range" value=".1" min="0" max="1" step="0.1" />
+          <h2>Grain</h2>
+          <input id="grain" type="range" data-flavor="grain" data-color="#C6B566" value=".5" min="0" max="1" step="0.1" />
 
-        <h2>Earth</h2>
-        <input id="earth" type="range" value=".4" min="0" max="1" step="0.1" />
+          <h2>Herb</h2>
+          <input id="herb" type="range" data-flavor="herb" data-color="#918821" value=".1" min="0" max="1" step="0.1" />
+
+          <h2>Earth</h2>
+          <input id="earth" type="range" data-flavor="earth" data-color="#8AA370" value=".4" min="0" max="1" step="0.1" />
+
+        </form>
       </div>
 
       <div id="chart"></div>

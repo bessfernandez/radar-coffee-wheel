@@ -2,7 +2,6 @@
 /* An SVG radial chart built to illustrate the flavors in a cup of coffee.
    Adjustable via range sliders.
    Features to improve:
-   * dynamically build out initial flavors
    * allow user to add custom flavors,
    * allow user to name their cup of coffee with details (bean type, grind, type of beverage)
    * use local storage to save past flavors.
@@ -13,24 +12,42 @@
 
 'use strict';
 
-var data;
-var domainRange = 100,
-    // @TODO - improve, these keys assume the flavor matches an ID in the DOM
-    keys = ['floral', 'citrus', 'berry', 'chocolate', 'sugar', 'nut', 'grain', 'herb', 'earth'];
+var data,
+    coffeeInputs,
+    coffeeColors = [],
+    domainRange = 100;
 
-var initChartData = function() {
+var initChartData = function(formId) {
+  // data array used to build D3 chart
   data = [ { data: {} } ];
-  keys.forEach(function(item, index) {
-    var availFlavor = document.getElementById(item);
-    if (availFlavor) {
-      // initial value of each flavor
-      data[0].data[keys[index]] = availFlavor.value * domainRange;
+
+  // convert array-like inputs to array
+  coffeeInputs = Array.prototype.slice.call(document.forms[formId].elements, 0);
+
+  coffeeInputs.forEach(function(item, index) {
+    var flavor = item.getAttribute('data-flavor'),
+        color = item.getAttribute('data-color');
+
+    if (data && color) {
+      data[0].data[flavor] = item.value * domainRange;
+
+      // coffee colors push to own array, want to be able to
+      // keep colors as an option potentially
+      coffeeColors.push(color);
+    } else {
+      // both flavor and color are a current requirement for any
+      // default input
+      throw new Error('Inputs need color and flavor.');
     }
   });
 };
 
 var buildInitialTaste = function() {
-  initChartData();
+  // chart assumes default coffee flavors and colors are input
+  // elements in the DOM
+  var formId = 'coffees';
+
+  initChartData(formId);
 
   d3.select('#chart')
     .datum(data)
@@ -41,8 +58,7 @@ var chart = radialBarChart()
   .barHeight(250)
   .reverseLayerOrder(true)
   .capitalizeLabels(true)
-  // @TODO - map colors to flavors in initial data
-  .barColors(['#206E4F', '#CCC02B', '#9F572B', '#7C7063', '#D8D5C9', '#BA966B', '#C6B566', '#918821', '#8AA370'])
+  .barColors(coffeeColors)
   .domain([0, domainRange])
   .tickValues([10,20,30,40,50,60,70,80,90,100])
   .tickCircleValues([10,20,30,40,50,60,70,80,90]);
@@ -50,14 +66,15 @@ var chart = radialBarChart()
 
 var reflavor = function() {
   var currValue = +this.value,
-      currKey = keys.indexOf(this.id);
+      currKey =    coffeeInputs.indexOf(this),
+      currFlavor = this.getAttribute('data-flavor');
 
   // update current slider flavor
-  keys.forEach(function(item, index) {
+  coffeeInputs.forEach(function(item, index) {
     if (index === currKey) {
-      data[0].data[keys[currKey]] = currValue * domainRange;
+      data[0].data[currFlavor] = currValue * domainRange;
     }
-  });
+  }.bind(this));
 
   // update chart with new flavor
   d3.select('#chart')
