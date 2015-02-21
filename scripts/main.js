@@ -65,9 +65,15 @@ var chart = radialBarChart()
 
 
 var reflavor = function() {
-  var currValue = +this.value,
+  var currValue =  parseFloat(this.value),
       currKey =    coffeeInputs.indexOf(this),
       currFlavor = this.getAttribute('data-flavor');
+
+  // @TODO - quick `isNan` and over max value check -
+  // need to refactor once defaults are finalized for
+  // supported HTML and max values
+  currValue = isNaN(currValue) ? 0 : currValue;
+  currValue = currValue > 1.0 ? 1.0 : currValue;
 
   // update current slider flavor
   coffeeInputs.forEach(function(item, index) {
@@ -83,9 +89,8 @@ var reflavor = function() {
 };
 
 // watch for flavor changes
-d3.selectAll('input[type=range]')
+d3.selectAll('input')
   .on('input', reflavor);
-
 
 // kick off the jams
 buildInitialTaste();
